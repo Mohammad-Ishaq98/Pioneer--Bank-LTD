@@ -1,0 +1,13 @@
+#transcation-area{
+    display: none;
+}
+.box{
+    padding: 25px;
+}
+.account-box {
+    margin-top: 68px;
+    padding: 25px;
+  }
+  .account-box label,input,button {
+    margin: 7px 0;
+  }

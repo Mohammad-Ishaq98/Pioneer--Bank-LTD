@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer bank</title>
+    <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/style.css">
+</head>
+<body>
+    <div id="login-area">
+        <h1 class="text-center">Student-form</h1>
+        <div class="container shadow-lg mt-5 py-5 rounded px-3">
+            <div class="form-gruop">
+                <label for="" class="">Emai Address</label>
+                <input type="email" class="form-control">
+                <small class="form-text text-muted">Please submit your parents valid Email Address
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" class="form-control">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">Check Me Out</label>
+            </div>
+            <button class="btn btn-info" id="login">Submit</button>
+        </div>
+    </div>
+    <!-- transaction area start -->
+    <div class="container" id="transcation-area">
+        <div class="row">
+            <div class="col-4 mt-5 px-2 py-2 text-center text-white">
+                <div class="box deposite-box bg-info rounded">
+                    <h5>Deposite</h5>
+                    <h2>$ <span id="currentDeposite">00</span></h2>
+                </div>
+            </div>
+            
+            <div class="col-4 mt-5 px-2 py-2 text-center text-white">
+                <div class="box Withdraw bg-danger rounded">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+            
+            <div class="col-4 mt-5 px-2 py-2 text-center text-white">
+                <div class="box Ballance bg-success Ballance rounded">
+                    <h5>Ballance</h5>
+                    <h2>$ <span id="currentBalance">100</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-gruop shadow-lg account-box">
+                    <label>Deposite</label>
+                    <input id="depositeAmmount" type="text" class="form-control">
+                    <button id="addDeposite" type="submit" class="btn btn-success">Deposite</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-gruop shadow-lg account-box">
+                    <label>Withdraw</label>
+                    <input id="withdrawAmmount" type="text" class="form-control">
+                    <button id="addWithdraw" type="submit" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //login btn
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", function(){
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+             const TransactionArea = document.getElementById("transcation-area");
+             TransactionArea.style.display= "block";
+        });
+
+        // deposite btn handler
+
+        const depositBtn = document.getElementById("addDeposite");
+        depositBtn.addEventListener("click", function(){
+            const depositeNumber = getInputNumber("depositeAmmount");
+            //sum area
+            // const currentDeposite = document.getElementById("currentDeposite").innerText;
+            // const currentDepositeNumber = parseFloat(currentDeposite);
+            // const totalNumber = depositNumber + currentDepositeNumber;
+            // document.getElementById("currentDeposite").innerText = totalNumber;
+            updateSpanText("currentDeposite", depositNumber)
+            updateSpanText("currentBalance", depositNumber)
+            
+            document.getElementById("depositeAmmount").value=""
+            // const currentBalance = document.getElementById("currentBalance").innerText;
+            // const currentBalanceNumber = parseFloat(currentBalance);
+            // const totalBallance = currentBalanceNumber + depositNumber;
+            // document.getElementById("currentBalance").innerText = totalBallance;
+
+            //WithDraw btn handler
+
+            const withdrawBtn = document.getElementById("addWithdraw");
+            withdrawBtn.addEventListener("click", function(){
+                const withdrawAmmount = document.getElementById("withdrawAmmount").value;
+                console.log("withdraw Ammount clicked");
+            })
+
+            function getInputNumber(id){
+                const depositeAmmount = document.getElementById(id).value;
+                const depositNumber  = parseFloat(depositeAmmount);
+            }
+
+            function updateSpanText(id, depositNumber){
+                const currentBalance = document.getElementById(id).innerText;
+                const currentBalanceNumber = parseFloat(currentBalance);
+                const totalBallance = currentBalanceNumber + depositNumber;
+                document.getElementById(id).innerText = totalBallance;            
+            }
+
+        })
+
+        
+    </script>
+    <script src="vendors/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="vendors/js/popper.min.js"></script>
+    <script src="vendors/js/bootstrap.min.js"></script>
+</body>
+</html>
